@@ -11,12 +11,12 @@ import java.io.IOException;
 public class StockApplication {
 
     public static void main(String[] args) {
-//        SpringApplication.run(StockApplication.class, args);
+        SpringApplication.run(StockApplication.class, args);
 
-        YahooFinanceScraper yahooFinanceScraper = new YahooFinanceScraper();
-//        var result = yahooFinanceScraper.scrap(Company.builder().ticker("O").build());
-        var result = yahooFinanceScraper.scrapCompanyByTicker("MMM");
-        System.out.println(result);
+//        YahooFinanceScraper yahooFinanceScraper = new YahooFinanceScraper();
+////        var result = yahooFinanceScraper.scrap(Company.builder().ticker("O").build());
+//        var result = yahooFinanceScraper.scrapCompanyByTicker("MMM");
+//        System.out.println(result);
     }
 
 }
