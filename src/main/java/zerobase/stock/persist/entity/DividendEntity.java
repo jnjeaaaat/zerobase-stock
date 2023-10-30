@@ -10,11 +10,8 @@ import java.time.LocalDateTime;
 
 @Entity(name = "DIVIDEND")
 @Getter
-@Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class DividendEntity {
 
     @Id

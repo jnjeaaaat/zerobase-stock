@@ -9,11 +9,8 @@ import javax.persistence.Id;
 
 @Entity(name = "COMPANY")
 @Getter
-@Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class CompanyEntity {
 
     @Id
