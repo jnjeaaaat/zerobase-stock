@@ -14,7 +14,8 @@ public class StockApplication {
 //        SpringApplication.run(StockApplication.class, args);
 
         YahooFinanceScraper yahooFinanceScraper = new YahooFinanceScraper();
-        var result = yahooFinanceScraper.scrap(Company.builder().ticker("O").build());
+//        var result = yahooFinanceScraper.scrap(Company.builder().ticker("O").build());
+        var result = yahooFinanceScraper.scrapCompanyByTicker("MMM");
         System.out.println(result);
     }
 
