@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.apache.commons.collections4.Trie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -58,6 +59,16 @@ public class CompanyService {
                         .collect(Collectors.toList());
         this.dividendRepository.saveAll(dividendEntities);
         return company;
+    }
+
+    public List<String> getCompanyNamesByKeyword(String prefix) {
+        Pageable limit = PageRequest.of(0, 10);
+        Page<CompanyEntity> companyEntities =
+                this.companyRepository.findByNameStartingWithIgnoreCase(prefix, limit);
+
+        return companyEntities.stream()
+                                .map(e -> e.getName())
+                                .collect(Collectors.toList());
     }
 
     public void addAutocompleteKeyword(String prefix) {

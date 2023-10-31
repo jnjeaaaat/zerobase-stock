@@ -22,7 +22,7 @@ public class CompanyController {
     @GetMapping("/autocomplete")
     public ResponseEntity<?> autoComplete(@RequestParam String prefix) {
         return ResponseEntity
-                .ok(this.companyService.autocomplete(prefix));
+                .ok(this.companyService.getCompanyNamesByKeyword(prefix));
     }
 
     @GetMapping("")
