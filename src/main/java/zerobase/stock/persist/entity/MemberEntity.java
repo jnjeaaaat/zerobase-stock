@@ -38,11 +38,6 @@ public class MemberEntity implements UserDetails {
     }
 
     @Override
-    public String getUsername() {
-        return null;
-    }
-
-    @Override
     public boolean isAccountNonExpired() {
         return false;
     }
