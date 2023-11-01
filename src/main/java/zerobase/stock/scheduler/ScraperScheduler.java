@@ -2,10 +2,13 @@ package zerobase.stock.scheduler;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import zerobase.stock.model.Company;
 import zerobase.stock.model.ScrapedResult;
+import zerobase.stock.model.constants.CacheKey;
 import zerobase.stock.persist.CompanyRepository;
 import zerobase.stock.persist.DividendRepository;
 import zerobase.stock.persist.entity.CompanyEntity;
@@ -17,6 +20,7 @@ import java.util.List;
 
 @Slf4j
 @Component
+@EnableCaching
 @AllArgsConstructor
 public class ScraperScheduler {
 
@@ -25,17 +29,7 @@ public class ScraperScheduler {
 
     private final Scraper yahooFinanceScraper;
 
-//    @Scheduled(fixedDelay = 1000)
-//    public void test1() throws InterruptedException {
-//        Thread.sleep(10000);
-//        System.out.println(Thread.currentThread().getName() + " -> 테스트 1 : " + LocalDateTime.now());
-//    }
-//
-//    @Scheduled(fixedDelay = 1000)
-//    public void test2() {
-//        System.out.println(Thread.currentThread().getName() + " -> 테스트 2 : " + LocalDateTime.now());
-//    }
-
+    @CacheEvict(value = CacheKey.KYE_FINANCE, allEntries = true)
     @Scheduled(cron = "${scheduler.scrap.yahoo}")
     public void yahooFinanceScheduling() {
         log.info("scraping scheduler is started");

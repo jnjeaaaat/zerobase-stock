@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import zerobase.stock.model.Company;
 import zerobase.stock.model.Dividend;
 import zerobase.stock.model.ScrapedResult;
+import zerobase.stock.model.constants.CacheKey;
 import zerobase.stock.persist.CompanyRepository;
 import zerobase.stock.persist.DividendRepository;
 import zerobase.stock.persist.entity.CompanyEntity;
@@ -27,7 +28,7 @@ public class FinanceService {
 
     // 요청이 자주 들어오는가?
     // 자주 변경되는 데이터 인가?
-    @Cacheable(key = "#companyName", value = "finance")
+    @Cacheable(key = "#companyName", value = CacheKey.KYE_FINANCE)
     public ScrapedResult getDividendByCompanyName(String companyName) {
         log.info("search company -> " + companyName);
 
